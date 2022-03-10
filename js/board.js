@@ -15,7 +15,7 @@ var activeBuffers = [];
 
 
 // mp3 files and sources
-var soundfiles = ["В главных ролях.mp3","Конченый.mp3","Идиот.mp3"];
+var soundfiles = ["В главных ролях.mp3","Конченый.mp3","Идиот.mp3","Самый.mp3","Сексуальный.mp3","Мужик.mp3","В мире.mp3"];
 
 var sourcefiles = [];
 
