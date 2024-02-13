@@ -1,36 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Валентинка</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./yesStyle.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Валентинка</title>
+  <style>
+    body {
+      background-color: #FFC0CB; /* Розовый цвет фона */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #000; /* Белый цвет текста */
+      text-align: center;
+	  font-family: cursive;
+	  font-size: 50px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 400px; /* Максимальная ширина для гифки */
+      height: auto;
+      margin-top: 0px; /* Отступ сверху */
+    }
+
+    .buttons {
+		
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+	background-color: #FFB6C1;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    #noButton {
+      transition: transform 0.5s ease; /* Плавное движение */
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="text" >
-            <h1 class = "header_text">Ты будешь моей Валентиной?</h1>
-        </div>
-        <div class="gif_container">
-            <img src="https://media.giphy.com/media/LnKonfpQ44fNvuGLkA/giphy.gif" alt="Cute animated illustration">
-        </div>
-        <div class = "buttons" aling = center>
-            <button class="btn" id = "yesButton" onclick="nextPage()">Да</button>
-            <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">Нет</button>
-            <script>
-                function nextPage() {
-                    window.location.href = "yes.html";
-                }
+  <h1>Ты будешь моей Валентиной?</h1>
+  <div class="buttons">
+    <button onclick="showMessage('Ура, спасибо')">Да</button>
+    <button id="noButton" onmouseover="randomizeButton()" onclick="randomizeButton()">Нет</button>
+  </div>
+  <img src="https://media.giphy.com/media/LnKonfpQ44fNvuGLkA/giphy.gif" alt="Valentine's Day GIF">
+  
 
-                function moveButton() {
-                    let x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth)*0.9;
-                    let y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight)*0.9;
-                    document.getElementById('noButton').style.left = `${x}px`;
-                    document.getElementById('noButton').style.top = `${y}px`;
-                }
-            </script>
-        </div>
-    </div>
+  <script>
+    function showMessage(message) {
+      alert(message);
+    }
 
+    function randomizeButton() {
+      var button = document.getElementById("noButton");
+      var maxX = window.innerWidth - button.offsetWidth;
+      var maxY = window.innerHeight - button.offsetHeight;
+
+      var newX = (Math.random()-0.5) * maxX * 0.6;
+      var newY = (Math.random()-0.5) * maxY * 0.6;
+
+      button.style.transform = "translate(" + newX + "px," + newY + "px)";
+    }
+  </script>
 </body>
 </html>
