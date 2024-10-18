@@ -44,7 +44,7 @@
         });
 
             
-        document.getElementById('send-button').addEventListener('click', function () {
+        
             if (user && user.id) {
                 let userId = user.id;
 
@@ -62,7 +62,7 @@
                 document.getElementById('server-response').innerText = 'Не удалось получить ID пользователя.';
                 console.error("ID пользователя недоступен:", user);
             }
-        });
+        );
     </script>
 </body>
 </html>
