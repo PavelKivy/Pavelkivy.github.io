@@ -53,10 +53,10 @@
                 .then(response => response.json())
                 .then(data => {
                     // Выводим ответ сервера
-                    document.getElementById('server-response').innerText = JSON.stringify(data);
+                    console.log(JSON.stringify(data));
                 })
                 .catch(error => {
-                    document.getElementById('server-response').innerText = 'Ошибка: ' + error;
+                    console.log('Ошибка: ' + error;)
                 });
             } else {
                 document.getElementById('server-response').innerText = 'Не удалось получить ID пользователя.';
