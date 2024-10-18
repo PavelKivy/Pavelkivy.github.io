@@ -16,17 +16,24 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
+            margin-top: 80px; /* Отступ сверху, чтобы контент не перекрывался заголовком */
         }
 
-        header {
-            width: 100%;
-            background-color: #4CAF50; /* Цвет фона */
-            color: white; /* Цвет текста */
-            text-align: center;
-            padding: 20px 0; /* Отступы по вертикали */
-            font-size: 24px; /* Размер шрифта */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень */
-        }
+        css
+Копировать код
+header {
+    width: 100%;
+    background-color: #4CAF50; /* Цвет фона */
+    color: white; /* Цвет текста */
+    text-align: center;
+    padding: 20px 0; /* Отступы по вертикали */
+    font-size: 24px; /* Размер шрифта */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень */
+    position: fixed; /* Фиксированное положение */
+    top: 0; /* Привязка к верхней части */
+    left: 0; /* Привязка к левой стороне */
+    z-index: 1000; /* Уровень наложения, чтобы заголовок был поверх другого контента */
+}
 
         .button-container {
             display: flex;
