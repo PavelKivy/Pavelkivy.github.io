@@ -10,11 +10,11 @@
     <p id="userId">ID пользователя: неизвестно</p>
 
     <script>
-        // Инициализация Telegram Web App API
-        window.Telegram.WebApp.ready();
+        // Проверка, что приложение запущено в Telegram
+        if (window.Telegram && window.Telegram.WebApp) {
+            // Инициализация Telegram Web App API
+            window.Telegram.WebApp.ready();
 
-        // Проверка, инициализировано ли Telegram Web App API
-        if (window.Telegram.WebApp.initDataUnsafe) {
             // Получение данных о пользователе
             const user = window.Telegram.WebApp.initDataUnsafe.user;
 
@@ -32,7 +32,7 @@
                 document.getElementById('userId').textContent = 'ID пользователя: неизвестно';
             }
         } else {
-            document.getElementById('greeting').textContent = 'Telegram Web App не инициализирован';
+            document.getElementById('greeting').textContent = 'Telegram Web App не инициализирован или запущен вне Telegram.';
         }
     </script>
 </body>
