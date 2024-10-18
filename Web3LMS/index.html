@@ -49,13 +49,7 @@
                 let userId = user.id;
 
                 // Отправляем ID через API
-                fetch('ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ user_id: userId })
-                })
+                fetch('https://admin.qlix.kz/api/create-user?telegram_id='+userId)
                 .then(response => response.json())
                 .then(data => {
                     // Выводим ответ сервера
