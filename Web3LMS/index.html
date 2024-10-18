@@ -20,30 +20,39 @@
         tg.expand(); // Расширение окна приложения
         let user = tg.initDataUnsafe.user;
         
-        if (user) {
+        // Проверка, загружены ли данные пользователя
+        if (user && user.first_name) {
             document.getElementById('username').innerText = user.first_name;
+        } else {
+            document.getElementById('username').innerText = 'Не удалось загрузить имя пользователя.';
+            console.error("Данные пользователя недоступны:", user);
         }
 
         // Обработчик нажатия на кнопку
         document.getElementById('send-button').addEventListener('click', function () {
-            let userId = user.id;
+            if (user && user.id) {
+                let userId = user.id;
 
-            // Отправляем ID через API
-            fetch('ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ user_id: userId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Выводим ответ сервера
-                document.getElementById('server-response').innerText = JSON.stringify(data);
-            })
-            .catch(error => {
-                document.getElementById('server-response').innerText = 'Ошибка: ' + error;
-            });
+                // Отправляем ID через API
+                fetch('ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ user_id: userId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Выводим ответ сервера
+                    document.getElementById('server-response').innerText = JSON.stringify(data);
+                })
+                .catch(error => {
+                    document.getElementById('server-response').innerText = 'Ошибка: ' + error;
+                });
+            } else {
+                document.getElementById('server-response').innerText = 'Не удалось получить ID пользователя.';
+                console.error("ID пользователя недоступен:", user);
+            }
         });
     </script>
 </body>
