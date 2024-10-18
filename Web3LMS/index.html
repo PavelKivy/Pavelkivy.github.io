@@ -9,11 +9,14 @@
     <h1 id="greeting">Привет, пользователь!</h1>
 
     <script>
+        // Инициализация Telegram Web App API
+        window.Telegram.WebApp.ready();
+
         // Проверка, инициализировано ли Telegram Web App API
-        if (window.Telegram.WebApp) {
+        if (window.Telegram.WebApp.initDataUnsafe) {
             // Получение данных о пользователе
             const user = window.Telegram.WebApp.initDataUnsafe.user;
-            
+
             // Вывод имени пользователя
             if (user && user.first_name) {
                 document.getElementById('greeting').textContent = `Привет, ${user.first_name}!`;
