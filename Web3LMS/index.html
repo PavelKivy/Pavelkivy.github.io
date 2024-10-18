@@ -1,7 +1,28 @@
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+</head>
+<body>
+    <h1 id="greeting">Привет, пользователь!</h1>
 
-<script>
-
-alert (window.Telegram.WebApp.initDataUnsafe.user.first_name);
-  
-</script>
+    <script>
+        // Проверка, инициализировано ли Telegram Web App API
+        if (window.Telegram.WebApp) {
+            // Получение данных о пользователе
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            
+            // Вывод имени пользователя
+            if (user && user.first_name) {
+                document.getElementById('greeting').textContent = `Привет, ${user.first_name}!`;
+            } else {
+                document.getElementById('greeting').textContent = 'Привет, пользователь!';
+            }
+        } else {
+            document.getElementById('greeting').textContent = 'Telegram Web App не инициализирован';
+        }
+    </script>
+</body>
+</html>
