@@ -39,6 +39,9 @@
         }
 
         // Обработчик нажатия на кнопку
+        document.getElementById('start-learning').addEventListener('click', function() {
+            window.location.href = 'qwestions.html';
+            
         document.getElementById('send-button').addEventListener('click', function () {
             if (user && user.id) {
                 let userId = user.id;
