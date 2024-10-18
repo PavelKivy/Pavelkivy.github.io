@@ -1,95 +1,49 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-        }
-
-        .Main {
-            width: 100%;
-            padding: 25px;
-            text-align: center;
-
-        }
-
-        h1 {
-            margin-top: 40px;
-            margin-bottom: 10px;
-        }
-
-        img {
-            width: 70px;
-            margin: 30px auto;
-        }
-
-        .btn {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 60px;
-            width: 200px;
-            font-style: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--tg-theme-button-text-color);
-            background: var(--tg-theme-button-color);
-        }
-
-        form {
-            display: none;
-            text-align: center;
-        }
-        
-        input {
-            outline: none;
-            border-radius: 5px;
-            border: 2px solid #535353;
-            padding: 15px 10px;
-            margin: 10px 0 0;
-            background: var(--tg-theme-section-separator-color);
-            color: var(--tg-theme-text-color);
-            transition: all .2s;
-        }
-        
-        input:focus {
-            border-color: var(--tg-theme-secondary-bg-color)
-        }
-        
-    </style>
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="Main">
-        <h1>Тестовое приложение</h1>
-        <img src="{{ url_for('static', filename='bot.png') }}" alt="">
-        <p></p>
-        <button class="btn f-btn">Тест отправки данных</button>
+    <div id="user-info">
+        <p>Имя пользователя: <span id="username"></span></p>
     </div>
-    <form class="test-form">    
-        <input type="text" placeholder="Введите заголовок" class="title-inp">
-        <input type="text" placeholder="Введите описание" class="desc-inp">
-        <input type="text" placeholder="Введите текст" class="text-inp">
-        <button class="btn s-btn">Отправить</button>
-    </form>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <button id="send-button">Отправить ID</button>
+    <p>Ответ сервера: <span id="server-response"></span></p>
 
     <script>
+        // Получаем информацию о пользователе из Telegram
         let tg = window.Telegram.WebApp;
+        tg.expand(); // Расширение окна приложения
+        let user = tg.initDataUnsafe.user;
+        
+        if (user) {
+            document.getElementById('username').innerText = user.first_name;
+        }
 
-        let fBtn = document.getElementsByClassName("f-btn")[0]
-        let sBtn = document.getElementsByClassName("s-btn")[0]
+        // Обработчик нажатия на кнопку
+        document.getElementById('send-button').addEventListener('click', function () {
+            let userId = user.id;
 
+            // Отправляем ID через API
+            fetch('ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id: userId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Выводим ответ сервера
+                document.getElementById('server-response').innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById('server-response').innerText = 'Ошибка: ' + error;
+            });
         });
     </script>
 </body>
